@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors game </title>
+
+    <style>
+
+        .container{
+            text-align: center;
+            margin-top: 100px;
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 20px;
+            width: 80%;
+            height: 400px;
+            margin-left: 10%;
+            background-color: rgb(233, 255, 251);
+        }
+
+        .container button{
+            background-color: rgb(233, 232, 226);
+            border: 1px solid rgb(195, 195, 195);
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1>Rock Paper Scissors game</h1>
+            <p>This is a Rock, Paper, Scissors game. Pick a move and let's see who wins!</p>
+        </div>
+
+
+        <button onclick="playGame('rock')">Rock</button>
+        <button onclick="playGame('paper')">Paper</button>
+        <button onclick="playGame('scissors')">Scissors</button><br><br>
+
+
+        <h3>Results:</h3><p id="results"></p>
+
+    </div>
+    
+
+    <script>
+
+        function getComputerMove(){
+            let random = Math.random();
+            if (random < 0.34){
+                return "rock";
+            } else if (random <= 0.67){
+                return "paper";
+            } else {
+                return "scissors";
+            }
+        }
+
+        function playGame(playerMove){
+            let computerMove = getComputerMove();
+            let result = "";
+
+            if (playerMove === computerMove){
+                result = "It's a tie!";
+            } else if (playerMove === "rock"){
+                result = (computerMove === "scissors") ? "You win!" : "You lose! ";
+            } else if (playerMove === "paper"){
+                result = (computerMove === "rock") ? "You win!" : "You lose!";
+            } else if (playerMove === "scissors"){
+                result = (computerMove === "paper") ? "You win!" : "You lose!";
+            }
+
+            console.log(`The computer chose ${computerMove}. ${result}`);
+
+        document.getElementById("results").innerHTML = `The computer chose ${computerMove}. ${result}`;
+
+        }
+
+        
+    </script>
+</body>
+</html>
